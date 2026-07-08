@@ -1,0 +1,86 @@
+optimizer:
+  name: adam
+  lr: 1.0e-3
+  weight_decay: 0
+
+train:
+  epoch: 3000
+  batch_size: 4096
+  save_model: true
+  loss: pairwise
+  test_step: 3
+  reproducible: true
+  seed: 2025
+  patience: 5
+  
+test:
+  metrics: [recall, ndcg]
+  k: [5, 10, 20]
+  batch_size: 1024
+
+data:
+  type: general_cf
+  name: amazon
+
+model:
+  name: diaurec
+  # general parameters here
+  keep_rate: 0.7
+  embedding_size: 32
+  intent_size: 64
+  # dataset-specific parameters here
+  layer_num: 3
+  reg_weight: 1.0e-7
+  kd1_weight: 1.0e-2
+  kd1_temperature: 0.2
+  eps: 0.9
+#   sigma: 1.0
+  # for amazon
+  amazon:
+    layer_num: 2
+    reg_weight: 1.0e-7
+    kd1_temperature: 0.2
+    ssl_temperature: 0.2
+    gamma: 1.0
+    ssl_lambda1: 0.15
+    ssl_lambda2: 0.15
+    ssl_lambda3: 0.15
+    ssl_lambda4: 0.15
+    intent_size: 128
+    keep_rate: 0.8
+    eps: 0.9
+    k: 20.0
+    sigma: 1.0
+    mix_weight: 0.0
+  # for yelp
+  yelp:
+    layer_num: 2
+    reg_weight: 1.0e-7
+    ssl_temperature: 0.2
+    gamma: 0.2
+    ssl_lambda1: 0.2
+    ssl_lambda2: 0.2
+    ssl_lambda3: 0.2
+    ssl_lambda4: 0.2
+    intent_size: 128
+    keep_rate: 0.8
+    eps: 0.9
+    mix_weight: 0.0
+    sigma: 0.4
+    k: 10.0
+  # for steam:
+  steam:
+    layer_num: 2
+    reg_weight: 1.0e-8
+    ssl_temperature: 0.1
+    gamma: 0.4
+    ssl_lambda1: 0.1
+    ssl_lambda2: 0.02
+    ssl_lambda3: 0.001
+    ssl_lambda4: 0.02
+    intent_size: 128
+    keep_rate: 0.7
+    eps: 0.9
+    k: 15.0
+    sigma: 1.0
+    mix_weight: 0.0
