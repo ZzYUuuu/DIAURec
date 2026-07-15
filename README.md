@@ -48,7 +48,7 @@ If you find this work helpful, please cite it:
   booktitle = {Proceedings of the 49th International ACM SIGIR Conference on Research and Development in Information Retrieval},
   year = {2026},
   doi = {10.1145/3805712.3809551},
-  pages = {TBD},
-  numpages = {TBD}
+  pages = {2420--2430},
+  numpages = {11}
 }
 ```
